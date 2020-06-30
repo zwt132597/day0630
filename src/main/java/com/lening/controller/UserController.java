@@ -33,6 +33,10 @@ public class UserController {
     /**
      * 保存我的审核
      */
+    /**
+     * 使用git的注释
+     *
+     * */
     @RequestMapping("/saveWdsh")
     public String saveWdsh(HttpServletRequest request,Integer pid,Integer shstatus){
         UserBean ub = (UserBean)request.getSession().getAttribute("ub");
