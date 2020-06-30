@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lening.mapper.RoleMapper">
+    <resultMap id="rolemap" type="RoleBean">
+        <id column="rid" property="rid"/>
+        <result column="rname" property="rname"/>
+        <association property="deptBean" javaType="DeptBean">
+            <id property="deptid" column="deptid"/>
+            <result column="dname" property="dname"/>
+        </association>
+    </resultMap>
+    <select id="getRoleList" resultMap="rolemap">
+        select * from t_role a left join t_dept b on a.deptid = b.deptid
+    </select>
+    <select id="getRoleByRid" resultMap="rolemap">
+        select  * from t_role where rid=#{rid}
+    </select>
+    <select id="getPowerList" resultType="PowerBean">
+        select * from t_power
+    </select>
+    <select id="getIdsByRid" resultType="int">
+        select id from t_r_p where rid=#{rid}
+    </select>
+    <delete id="deleteRolePowerByRid">
+        delete from t_r_p where rid=#{rid}
+    </delete>
+    <insert id="insertRolePower">
+        insert into t_r_p(rid,id) values(#{rid},#{sid})
+    </insert>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lening.mapper.DeptMapper">
+    <select id="getDeptList" resultType="DeptBean">
+        select * from t_dept
+    </select>
+
+    <select id="getDeptByDeptid" resultType="DeptBean">
+        select * from t_dept where deptid=#{deptid}
+    </select>
+    <select id="RidsByDeptid" resultType="int">
+        select rid from t_role where deptid=#{deptid}
+    </select>
+    <select id="getRoleList" resultType="RoleBean">
+        select * from t_role
+    </select>
+    <update id="deleteRoleByDeptid">
+         update t_role set deptid = null where deptid = #{deptid}
+    </update>
+    <update id="insertDeptRole">
+        update t_role set deptid = #{deptid} where rid=#{rid}
+    </update>
+</mapper>
